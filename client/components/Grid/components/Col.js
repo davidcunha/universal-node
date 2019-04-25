@@ -47,8 +47,8 @@ const Col = styled.div`
             isInteger(p[k])
               ? // Integer value
                 `
-        flex-basis: ${(100 / config(p).gridSize) * p[k]}%;
-        max-width: ${(100 / config(p).gridSize) * p[k]}%;
+        flex-basis: ${(100 / config(p).gridSize[k]) * p[k]}%;
+        max-width: ${(100 / config(p).gridSize[k]) * p[k]}%;
         display: block;
       `
               : // Boolean
@@ -70,7 +70,7 @@ const Col = styled.div`
       .filter(k => ~offsetProps.indexOf(k))
       .map(
         k => config(p).media[k.replace(/Offset$/, '')]`
-        margin-left: ${(100 / config(p).gridSize) * p[k]}%;
+        margin-left: ${(100 / config(p).gridSize[k.replace(/Offset$/, '')]) * p[k]}%;
       `,
       )}
 `;

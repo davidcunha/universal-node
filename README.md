@@ -1,11 +1,4 @@
-[<img width="110" src="https://avatars3.githubusercontent.com/u/38539999?s=200&v=4g" />](https://picuscreative.com)
-
 # universal-node
-
-PICUS' template for universal Node/React applications. It offers you the required tooling for your universal JavaScript application, as well as an opinionated full-stack ready to kick-off your next project.
-
-[<img src="https://img.shields.io/david/picuscreative/universal-node.svg" />](https://david-dm.org/picuscreative/universal-node)
-[<img src="https://img.shields.io/david/dev/picuscreative/universal-node.svg" />](https://david-dm.org/picuscreative/universal-node?type=dev)
 
 ## What’s Included?
 
@@ -24,19 +17,26 @@ PICUS' template for universal Node/React applications. It offers you the require
 - 🐞 Error tracking with Sentry.
 - ⚙️ Offline mode with Service Workers.
 - 👮 Security on the `express` server using `helmet` and `hpp`.
-- 🏜 Asset bundling support. e.g. images/svgs/fonts.
 
 ## Table of Contents
 
-- [Installation and setup](#installation-and-setup)
-- [Commands](#commands)
-  - [dev](#dev)
-  - [build](#build)
-  - [start](#start)
-  - [lint](#lint)
-  - [docs](#docs)
-- [Environment variables](#environment-variables)
-- [Browserslist](#browserslist)
+- [universal-node](#universal-node)
+  - [What’s Included?](#whats-included)
+  - [Table of Contents](#table-of-contents)
+  - [Installation and setup](#installation-and-setup)
+    - [1. Install packages](#1-install-packages)
+    - [2. Configure Environment variables](#2-configure-environment-variables)
+    - [3. Run database migrations and seeds (for testing purpose)](#3-run-database-migrations-and-seeds-for-testing-purpose)
+  - [Commands](#commands)
+    - [dev](#dev)
+    - [build](#build)
+    - [start](#start)
+    - [lint](#lint)
+  - [Environment variables](#environment-variables)
+    - [Server bundle](#server-bundle)
+    - [Client bundle](#client-bundle)
+    - [.env file](#env-file)
+  - [Browserslist](#browserslist)
 
 ## Installation and setup
 
@@ -90,14 +90,6 @@ Runs [ESlint](https://eslint.org/) and [Stylelint](https://stylelint.io/) on the
 
 We use conventional commit messages: [commitlint/config-conventional](https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional).
 
-### docs
-
-```sh
-$ npm run docs
-```
-
-Runs [react-docgen](https://github.com/reactjs/react-docgen) to generate Markdown documentation for each component available in `components`. By default it generates a `doc.md` inside the component directory.
-
 ## Environment variables
 
 Your project can consume variables declared in your environment by accessing them via `process.env`.
@@ -137,8 +129,4 @@ This file is ignored in source control and it is intended to be created from `.e
 
 ## Browserslist
 
-By default, configurations for ESlint, Stylelint are "> 3%, Chrome >= 66, Firefox >= 59, Edge >= 15, Explorer >= 11, Safari >= 11, iOS >= 10.3" based on [browserl.ist](https://browserl.ist/?q=%3E+3%25%2C+Chrome+%3E%3D+66%2C+Firefox+%3E%3D+59%2C+Edge+%3E%3D+15%2C+Explorer+%3E%3D+11%2C+Safari+%3E%3D+11%2C+iOS+%3E%3D+10.3.2).
-
-## LICENSE
-
-[MIT License](https://opensource.org/licenses/MIT) - [PICUS](https://picuscreative.com)
+By default, configurations for ESlint, Stylelint are "ChromeAndroid >=70, Chrome >= 70, Firefox >= 63, Edge >= 16, Safari >= 11, iOS >= 11.2" based on [browserl.ist](https://browserl.ist/?q=%3E3%25%2C+ChromeAndroid+%3E%3D70%2C+Chrome+%3E%3D+70%2C+Firefox+%3E%3D+63%2C+Edge+%3E%3D+16%2C+Safari+%3E%3D+11%2C+iOS+%3E%3D+11.2).

@@ -2,12 +2,11 @@
 /* eslint-disable no-param-reassign */
 
 require('dotenv').config();
-const path = require('path');
 const webpack = require('webpack');
 const withSourceMaps = require('@zeit/next-source-maps');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const NextWorkboxPlugin = require('next-workbox-webpack-plugin');
-const cached = require('./config/cached');
+const cached = require('./client/config/cached');
 
 module.exports = withSourceMaps({
   distDir: 'static/dist',
@@ -25,10 +24,23 @@ module.exports = withSourceMaps({
     }
 
     config.module.rules.push(
+      // Web fonts
+      {
+        test: /\.(eot|ttf|woff|woff2|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: '/dist/static/fonts',
+              outputPath: 'static/fonts',
+              name: dev ? '[name].[ext]' : '[name].[hash:15].[ext]',
+            },
+          },
+        ],
+      },
       // Raster images (png, jpg, etc)
       {
         test: /\.(png|jpg|jpeg|gif|webp)$/,
-        exclude: [/\.svg$/, 'client/shared/media/fonts'],
         use: [
           {
             loader: 'file-loader',
@@ -43,27 +55,15 @@ module.exports = withSourceMaps({
       // SVGs
       {
         test: /\.svg$/,
-        oneOf: [
-          {
-            include: path.resolve(__dirname, 'client/shared/media/images/backgrounds'),
-            use: 'url-loader',
-          },
-          {
-            exclude: path.resolve(__dirname, 'client/shared/media/images/backgrounds'),
-            use: 'svg-inline-loader',
-          },
-        ],
-      },
-      // Web fonts
-      {
-        test: /\.(eot|ttf|woff|woff2|otf)$/,
         use: [
+          'babel-loader',
           {
-            loader: 'file-loader',
+            loader: 'react-svg-loader',
             options: {
-              publicPath: '/dist/static/fonts',
-              outputPath: 'static/fonts',
-              name: dev ? '[name].[ext]' : '[name].[hash:15].[ext]',
+              svgo: {
+                plugins: [{ removeTitle: false }],
+                floatPrecision: 2,
+              },
             },
           },
         ],
@@ -115,8 +115,8 @@ module.exports = withSourceMaps({
       );
     }
 
-    if (process.env.ANALYZE && !isServer) {
-      config.plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 3002 }));
+    if (process.env.ANALYZER && !isServer) {
+      config.plugins.push(new BundleAnalyzerPlugin());
     }
 
     return config;

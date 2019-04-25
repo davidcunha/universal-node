@@ -37,7 +37,7 @@ class Page extends PureComponent {
         <CustomHead meta={meta} />
         <Header isAuthenticated={isAuthenticated} />
         {children}
-        <OfflineSupport />
+        {process.env.NODE_ENV !== 'development' && <OfflineSupport />}
       </Grid>
     );
   }

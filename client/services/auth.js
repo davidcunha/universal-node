@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import redirect from '~/utils/redirect';
 import { setCookie, getCookie, removeCookies } from '~/utils/cookies';
 import { pageRoutes } from '~/config/routes';
@@ -7,21 +6,25 @@ import { pageRoutes } from '~/config/routes';
  /* Authorization utilities and redirects
 */
 export default class Auth {
-  static login = ({ id, token, ctx = {} }, dontRedirect) => {
+  static login = ({ id, token }) => {
     setCookie('user_id', id);
     setCookie('jwt', token);
-    !dontRedirect && redirect(pageRoutes.ACCOUNT_DETAILS_PATH, ctx);
     return null;
   };
 
-  static logout = (ctx = {}) => {
-    Auth.clearUserState();
-    redirect(pageRoutes.HOME_PATH, ctx);
+  static logout = (path = pageRoutes.HOME_PATH, ctx = {}) => {
+    Auth.clearCustomerState();
+    redirect(path, ctx);
   };
 
-  static clearUserState = (ctx = {}) => {
+  static clearCustomerState = (ctx = {}) => {
     removeCookies(['user_id', 'jwt'], ctx.res);
   };
+
+  static getUser = (ctx = {}) => ({
+    user_id: getCookie('user_id', ctx.req),
+    jwt: getCookie('jwt', ctx.req),
+  });
 
   static getJwt = (ctx = {}) => getCookie('jwt', ctx.req);
 
@@ -29,7 +32,7 @@ export default class Auth {
 
   static isAuthenticated = ctx => !!Auth.getJwt(ctx);
 
-  static redirectIfAuthenticated = (ctx, path = pageRoutes.ACCOUNT_PATH) => {
+  static redirectIfAuthenticated = (ctx, path = pageRoutes.HOME_PATH) => {
     if (Auth.isAuthenticated(ctx)) {
       redirect(path, ctx);
       return true;
@@ -37,9 +40,9 @@ export default class Auth {
     return false;
   };
 
-  static redirectIfNotAuthenticated = (ctx, user, path = pageRoutes.LOGIN_PATH) => {
+  static redirectIfNotAuthenticated = (ctx, path = pageRoutes.HOME_PATH) => {
     if (!Auth.isAuthenticated(ctx)) {
-      Auth.clearUserState(ctx);
+      Auth.clearCustomerState(ctx);
       redirect(path, ctx);
       return true;
     }

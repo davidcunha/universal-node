@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 const assert = require('assert');
 require('dotenv').config();
 
@@ -8,14 +9,20 @@ assert(
   validEnvironments.includes(process.env.NODE_ENV),
   `Expecting NODE_ENV to be one of: ${validEnvironments.join(', ')}`,
 );
-assert(process.env.SITE_URL != null, 'Expecting SITE_URL environment variable to be defined');
-assert(process.env.DB_USER != null, 'Expecting DB_USER environment variable to be defined');
-assert(process.env.DB_PASSWORD != null, 'Expecting DB_PASSWORD environment variable to be defined');
-assert(process.env.DB_HOST != null, 'Expecting DB_HOST environment variable to be defined');
-assert(
-  process.env.REACT_APP_API_URL != null,
-  'Expecting REACT_APP_API_URL environment variable to be defined',
-);
+[
+  'SITE_URL',
+  'HOST',
+  'PORT',
+  'DB_USER',
+  'DB_PASSWORD',
+  'DB_HOST',
+  'REACT_APP_API_URL',
+].map((config) => {
+  assert(
+    process.env[config] != null,
+    `Expecting ${config} environment variable to be defined`,
+  );
+});
 
 const defaultConfig = {
   app: {
@@ -27,12 +34,16 @@ const defaultConfig = {
           "'self'",
           'https://graph.facebook.com/v3.1/me',
           'https://sentry.io/api/',
-          'https://ipv4.icanhazip.com/',
           'https://www.google-analytics.com/',
         ],
         'default-src': ["'none'"],
+        'child-src': ["'self'"],
         'manifest-src': ["'self'"],
-        'frame-src': ['staticxx.facebook.com', 'www.facebook.com', 'https://js.stripe.com/'],
+        'frame-src': [
+          'staticxx.facebook.com',
+          'www.facebook.com',
+          'https://js.stripe.com/',
+        ],
         'script-src': [
           "'self'",
           "'unsafe-inline'",
@@ -43,15 +54,20 @@ const defaultConfig = {
           'https://js.stripe.com/v3/',
           'http://www.googletagmanager.com/',
         ],
-        'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-        'img-src': [
+        'worker-src': ["'self'", 'blob:'],
+        'style-src': [
           "'self'",
+          "'unsafe-inline'",
           'www.facebook.com',
           'https://www.google-analytics.com',
-          'https:',
-          'data:;',
+          'https://fonts.googleapis.com',
         ],
-        'font-src': ["'self'", 'fonts.gstatic.com', 'https://fonts.googleapis.com'],
+        'img-src': ["'self'", 'https:', 'data:;'],
+        'font-src': [
+          "'self'",
+          'fonts.gstatic.com',
+          'https://fonts.googleapis.com',
+        ],
         'object-src': ["'self'"],
         'block-all-mixed-content': true,
         'frame-ancestors': ["'none'"],

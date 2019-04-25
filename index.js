@@ -5,6 +5,7 @@ const hpp = require('hpp');
 const bodyParser = require('body-parser');
 const next = require('next');
 const { join } = require('path');
+const Raven = require('raven');
 const controllers = require('./server/controllers')(express);
 const config = require('./config/config');
 
@@ -13,12 +14,14 @@ const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
+Raven.config(process.env.REACT_APP_SENTRY_DSN).install();
 
 app
   .prepare()
   .then(() => {
     const server = express();
     server.use(bodyParser.urlencoded({ extended: false }));
+    server.use(bodyParser.json());
     server.use(hpp());
     server.use(helmet());
     server.use(helmet.contentSecurityPolicy(config.app.csp));
@@ -26,6 +29,7 @@ app
     server.use(express.static('static'));
 
     server.use('/api', controllers);
+
     server.get('*', (req, res) => {
       if (req.url.includes('/sw')) {
         const filePath = join(__dirname, 'static', 'workbox', 'sw.js');

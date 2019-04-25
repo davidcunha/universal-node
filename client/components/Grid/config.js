@@ -1,30 +1,9 @@
 /* eslint-disable */
 import { css } from 'styled-components';
+import variables from '~/shared/styles/variables';
 
 const THEME_CONF = 'flexboxgrid';
-export const BASE_CONF = {
-  gridSize: 10,
-  gutterWidth: {
-    xs: 10,
-    sm: 10,
-    md: 50,
-    lg: 50,
-  },
-  outerMargin: 50,
-  mediaQuery: 'only screen',
-  container: {
-    xs: 320,
-    sm: 480,
-    md: 720,
-    lg: 1240,
-  },
-  breakpoints: {
-    xs: 0,
-    sm: 480,
-    md: 720,
-    lg: 1240,
-  },
-};
+export const BASE_CONF = variables.grid;
 
 const configCache = [];
 const makeCacheId = props => JSON.stringify((props.theme && props.theme[THEME_CONF]) || {});

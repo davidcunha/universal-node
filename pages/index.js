@@ -7,15 +7,16 @@ import { Row, Col } from '~/components/Grid';
 class Index extends Component {
   static async getInitialProps(ctx) {
     const { store } = ctx;
-    const userId = 1;
 
+    const userId = 1;
     const user = await store.dispatch(UserActions.get(userId, ctx));
 
     return {
       user,
       meta: {
         title: 'project-name',
-        description: 'This is an example of a meta description for project-name page.',
+        description:
+          'This is an example of a meta description for project-name page.',
       },
     };
   }
@@ -25,10 +26,6 @@ class Index extends Component {
      * Current information of the user, if logged in
      */
     user: PropTypes.object,
-    /**
-     * Function that get user based on id
-     */
-    getUser: PropTypes.func,
     /**
      * Meta attributes, e.g. title, description etc.
      */

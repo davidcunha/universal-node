@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-import { Base64 } from 'js-base64';
 import Auth from '~/services/auth';
 
 /**
@@ -7,7 +5,7 @@ import Auth from '~/services/auth';
  /* content-type, authorization type, and body
 */
 export default ({
-  method, authorization, body, ctx, token,
+  method, authorization, body, ctx,
 }) => {
   const request = {
     method,
@@ -17,28 +15,15 @@ export default ({
   };
 
   if (authorization) {
-    const {
-      type, fb_token, email, password,
-    } = authorization;
+    const { type } = authorization;
 
     switch (type) {
       case 'bearer': {
-        Object.assign(request.headers, { Authorization: `Bearer ${Auth.getJwt(ctx)}` });
+        Object.assign(request.headers, {
+          Authorization: `Bearer ${Auth.getJwt(ctx)}`,
+        });
         break;
       }
-      case 'basic':
-        Object.assign(request.headers, {
-          Authorization: `Basic ${Base64.btoa(`${email}:${password}`)}`,
-        });
-        break;
-      case 'facebook':
-        Object.assign(request.headers, { Authorization: `Facebook ${fb_token}` });
-        break;
-      case 'token':
-        Object.assign(request.headers, {
-          Authorization: `Bearer ${token}`,
-        });
-        break;
       default:
         break;
     }

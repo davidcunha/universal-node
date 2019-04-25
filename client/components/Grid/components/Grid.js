@@ -5,18 +5,17 @@ import styled, { css } from 'styled-components';
 import config, { DIMENSION_NAMES } from '../config';
 
 const Grid = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
 
   ${p =>
     !p.noPadding &&
     css`
       ${DIMENSION_NAMES.map(
         t =>
-          config(p).container[t] &&
           config(p).media[t]`
-        margin-right: ${p => `${config(p).outerMargin}px`};
-        margin-left: ${p => `${config(p).outerMargin}px`};
+        padding-right: ${p => `${config(p).outerMargin[t]}px`};
+        padding-left: ${p => `${config(p).outerMargin[t]}px`};
       `,
       )}
     `}

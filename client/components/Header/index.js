@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { pageRoutes } from '~/config/routes';
 import { Row, Col } from '~/components/Grid';
-import logo from '~/shared/media/images/picus-logo.jpg';
+import logo from '~/shared/media/images/logo.png';
 import { Img, NavLink } from './styles';
 
 /**
@@ -25,7 +25,7 @@ class Header extends PureComponent {
             <div>
               <Link href={pageRoutes.HOME_PATH}>
                 <a href={pageRoutes.HOME_PATH}>
-                  <Img src={logo} alt="PICUS" />
+                  <Img src={logo} />
                 </a>
               </Link>
             </div>

@@ -7,7 +7,6 @@ import Page from '~/components/Page';
 import makeStore from '~/utils/store';
 import Auth from '~/services/auth';
 import variablesStyle from '~/shared/styles/variables';
-import gridStyle from '~/shared/styles/grid';
 import RebootStyle from '~/shared/styles/reboot';
 import GlobalStyle from '~/shared/styles/globals';
 
@@ -15,7 +14,9 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     ctx.userId = Auth.getUserId(ctx);
 
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
 
     Object.assign(pageProps, {
       isAuthenticated: Auth.isAuthenticated(ctx),
@@ -36,7 +37,9 @@ class MyApp extends App {
     return (
       <Container fluid>
         <Provider store={store}>
-          <ThemeProvider theme={[variablesStyle, gridStyle].reduce((p, c) => Object.assign(p, c))}>
+          <ThemeProvider
+            theme={[variablesStyle].reduce((p, c) => Object.assign(p, c))}
+          >
             <div>
               <RebootStyle />
               <GlobalStyle />

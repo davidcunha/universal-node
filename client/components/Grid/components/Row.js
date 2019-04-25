@@ -18,8 +18,6 @@ const Row = styled.div`
         t =>
           config(p).container[t] &&
           config(p).media[t]`
-          margin-right: ${p => config(p).gutterWidth[t] / -2}px;
-          margin-left: ${p => config(p).gutterWidth[t] / -2}px;
       `,
       )}
     `}
@@ -31,6 +29,20 @@ const Row = styled.div`
         t =>
           config(p).gutterWidth[t] &&
           config(p).media[t]`
+      `,
+      )}
+    `}
+
+  ${p =>
+    !p.fluid &&
+    p.clearMargin &&
+    css`
+      ${DIMENSION_NAMES.map(
+        t =>
+          config(p).gutterWidth[t] &&
+          config(p).media[t]`
+          margin-right: ${p => config(p).outerMargin[t] * -1}px;
+          margin-left: ${p => config(p).outerMargin[t] * -1}px;
       `,
       )}
     `}

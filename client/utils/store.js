@@ -2,6 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '~/reducers';
+import createRavenMiddleware from 'raven-for-redux';
+import Raven from 'raven-js';
 // import { loadState, saveState } from '~/utils/localStorage';
 
 export default (initialState = {}) => {
@@ -13,7 +15,9 @@ export default (initialState = {}) => {
     rootReducer,
     // persistedState || initialState,
     initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware)),
+    composeWithDevTools(
+      applyMiddleware(createRavenMiddleware(Raven), thunkMiddleware),
+    ),
   );
 
   // Uncomment this line in case you wish to save reducer info

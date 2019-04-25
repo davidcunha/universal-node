@@ -2,7 +2,6 @@
   "presets": ["next/babel"],
   "plugins": [
     ["babel-plugin-root-import", { "rootPathSuffix": "client" }],
-    ["transform-class-properties"],
     [
       "styled-components",
       {
@@ -10,6 +9,8 @@
         "displayName": true,
         "preprocess": false
       }
-    ]
+    ],
+    "transform-class-properties",
+    "add-react-displayname"
   ]
 }

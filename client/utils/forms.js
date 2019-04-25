@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import filter from 'lodash/filter';
 
 /**
  /* Validate form by using the form's validateInput function
@@ -16,7 +17,9 @@ export function formValidator(inputs, validateInput) {
   });
 
   return {
-    isValid: _.isEmpty(list.filter(name => errors[name].errors.isValid === false)),
+    isValid: isEmpty(
+      list.filter(name => errors[name].errors.isValid === false),
+    ),
     errors,
   };
 }
@@ -30,7 +33,7 @@ export function bindFormFieldsWithData(formFields, data) {
   if (result) {
     const formFieldsKeys = Object.keys(formFields);
     const dataKeys = Object.keys(result);
-    const matchedKeys = _.filter(dataKeys, key => formFieldsKeys.includes(key));
+    const matchedKeys = filter(dataKeys, key => formFieldsKeys.includes(key));
 
     for (let i = 0; i < matchedKeys.length; i += 1) {
       formFields[matchedKeys[i]].value = result[matchedKeys[i]];

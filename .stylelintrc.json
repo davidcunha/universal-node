@@ -10,13 +10,12 @@
       true,
       {
         "browsers": [
-          "> 3%",
-          "Chrome >= 66",
-          "Firefox >= 59",
-          "Edge >= 15",
-          "Explorer >= 11",
+          "ChromeAndroid >= 70",
+          "Chrome >= 70",
+          "Firefox >= 63",
+          "Edge >= 16",
           "Safari >= 11",
-          "iOS >= 10.3"
+          "iOS >= 11.2"
         ],
         "severity": "warning"
       }

@@ -6,3 +6,7 @@ tests/screenshots/**/*.png
 node_modules
 npm-debug.*
 .env
+.vscode/
+
+.DS_Store
+

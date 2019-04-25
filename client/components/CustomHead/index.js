@@ -8,26 +8,26 @@ import Head from 'next/head';
  */
 class CustomHead extends PureComponent {
   static propTypes = {
-    /**
-     * Meta tags content
-     */
-    meta: PropTypes.string,
+    meta: PropTypes.object,
+  };
+
+  static defaultProps = {
+    meta: {},
   };
 
   render() {
     const { meta } = this.props;
     return (
-      <div>
-        <Head>
-          <title>{meta.title || 'project-name'}</title>
+      <Head>
+        {meta.title && <title>project-name - {meta.title}</title>}
+        {meta.description && (
           <meta
             key="description"
             name="description"
-            content={meta.description || 'project-name description'}
+            content={meta.description}
           />
-          {/* any other meta tags */}
-        </Head>
-      </div>
+        )}
+      </Head>
     );
   }
 }

@@ -12,17 +12,49 @@ export const loadState = (initialState) => {
       return merge({}, initialState, deserializedState);
     }
   }
-  return undefined;
+  return {};
+};
+
+/**
+ /* Load state specific item from local storage
+ /* Used as an alternative to dependencies like redux-persist
+*/
+export const loadStateItem = (key) => {
+  if (process.browser) {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState !== null) {
+      const deserializedState = JSON.parse(serializedState);
+      return deserializedState[key];
+    }
+  }
+  return {};
 };
 
 /**
  /* Save state to local storage
  /* Used as an alternative to dependencies like redux-persist
 */
-export const saveState = (state, key) => {
+export const saveState = (state, key = '') => {
   if (process.browser) {
     const serializedState = JSON.parse(localStorage.getItem('state'));
 
-    localStorage.setItem(key, JSON.stringify(serializedState));
+    if (key) {
+      serializedState[key] = state;
+      localStorage.setItem('state', JSON.stringify(serializedState));
+    } else {
+      localStorage.setItem(
+        'state',
+        JSON.stringify(merge({}, state, serializedState)),
+      );
+    }
+  }
+};
+
+/**
+ /* Reset state from local storage
+*/
+export const resetState = (initialState) => {
+  if (process.browser) {
+    localStorage.setItem('state', JSON.stringify(initialState));
   }
 };
