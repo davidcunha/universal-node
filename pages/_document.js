@@ -42,6 +42,18 @@ class MainDocument extends Document {
             name="apple-mobile-web-app-status-bar-style"
             content="black-translucent"
           />
+          <meta key="theme-color" name="theme-color" content="#ffffff" />
+          <meta
+            key="msapplication-navbutton-color"
+            name="msapplication-navbutton-color"
+            content="#ffffff"
+          />
+          <meta
+            key="msapplication-starturl"
+            name="msapplication-starturl"
+            content="/"
+          />
+          <link rel="manifest" href="manifest.json" />
           <meta
             key="application-name"
             name="application-name"

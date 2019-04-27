@@ -15,7 +15,7 @@
 - ⛑ SEO friendly - provides control of title/meta from within your pages.
 - 📊 Google Analytics support.
 - 🐞 Error tracking with Sentry.
-- ⚙️ Offline mode with Service Workers.
+- ⚙️ PWA support with `workbox`.
 - 👮 Security on the `express` server using `helmet` and `hpp`.
 
 ## Table of Contents
@@ -36,6 +36,7 @@
     - [Server bundle](#server-bundle)
     - [Client bundle](#client-bundle)
     - [.env file](#env-file)
+  - [PWA Support](#pwa-support)
   - [Browserslist](#browserslist)
 
 ## Installation and setup
@@ -126,6 +127,10 @@ REACT_APP_FOO=bar
 ```
 
 This file is ignored in source control and it is intended to be created from `.env.sample`, which is committed and anyone who clones the project can easily use it as a starting point.
+
+## PWA Support
+
+By default, in production mode, the application is a [PWA](https://developers.google.com/web/progressive-web-apps/) with [Workbox](https://developers.google.com/web/tools/workbox/). Please change `static/manifest.json` with the respective application data. Workbox configuration can be found in `next.config.js`. The service worker is instantiated inside the `OfflineSupport` component.
 
 ## Browserslist
 
