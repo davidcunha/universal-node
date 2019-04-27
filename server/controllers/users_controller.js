@@ -32,7 +32,7 @@ module.exports.read = (req, res) => {
       });
     } else {
       const { user_id } = req.params;
-      User.findById(user_id).then((results) => {
+      User.findByPk(user_id).then((results) => {
         responseHandler.validateRead(res, resourceName, results);
       });
     }
@@ -48,7 +48,7 @@ module.exports.update = (req, res) => {
       });
     } else {
       const { user_id } = req.params;
-      User.findById(user_id)
+      User.findByPk(user_id)
         .then((userFound) => {
           const user = userFound;
           Object.keys(req.body).forEach((key, body) => {

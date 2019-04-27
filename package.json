@@ -38,6 +38,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
+    "formik": "^1.5.4",
     "helmet": "^3.16.0",
     "hpp": "^0.2.2",
     "isomorphic-fetch": "^2.2.1",
@@ -68,7 +69,8 @@
     "sequelize-cli": "^5.4.0",
     "styled-components": "^4.2.0",
     "styled-jsx": "^3.2.1",
-    "validator": "^10.11.0"
+    "validator": "^10.11.0",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",

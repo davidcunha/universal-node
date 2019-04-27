@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import UserActions from '../client/actions/user';
+import UserActions from '~/actions/user';
 import { Row, Col } from '~/components/Grid';
+import UserForm from '~/components/UserForm';
 
 class Index extends Component {
   static async getInitialProps(ctx) {
@@ -32,13 +33,23 @@ class Index extends Component {
     meta: PropTypes.object.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: {
+        name: '',
+      },
+    };
+  }
+
   render() {
-    const { user } = this.props;
     return (
       <Row>
         <Col>
           <h1>project-name</h1>
-          <p>Hello {user.email}</p>
+          <p>Hello {this.props.user.email}</p>
+          <UserForm data={this.state.user} />
         </Col>
       </Row>
     );

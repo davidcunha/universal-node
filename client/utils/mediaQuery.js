@@ -15,20 +15,8 @@ export default class MediaQuery {
     return breakpoint;
   };
 
-  static isMobile = () => {
-    if (
-      window.innerWidth >= variables.grid.breakpoints.xs
-      && window.innerWidth < variables.grid.breakpoints.md
-    ) {
-      return true;
-    }
-    return false;
-  };
+  static isMobile = () => window.innerWidth >= variables.grid.breakpoints.xs
+    && window.innerWidth < variables.grid.breakpoints.md;
 
-  static isDesktop = () => {
-    if (window.innerWidth >= variables.grid.breakpoints.md) {
-      return true;
-    }
-    return false;
-  };
+  static isDesktop = () => window.innerWidth >= variables.grid.breakpoints.md;
 }
