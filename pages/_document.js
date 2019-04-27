@@ -53,7 +53,7 @@ class MainDocument extends Document {
             name="msapplication-starturl"
             content="/"
           />
-          <link rel="manifest" href="manifest.json" />
+          <link rel="manifest" href="/manifest.json" />
           <meta
             key="application-name"
             name="application-name"
