@@ -3,6 +3,7 @@
 Template for universal Node/React applications. It offers you the required tooling for your universal JavaScript application, as well as an opinionated full-stack ready to kick-off your next project.
 
 [<img src="https://img.shields.io/david/davidcunha/universal-node.svg" />](https://david-dm.org/davidcunha/universal-node)
+[<img src="https://img.shields.io/david/dev/davidcunha/universal-node.svg" />](https://david-dm.org/davidcunha/universal-node?type=dev)
 
 
 ## What’s Included?
