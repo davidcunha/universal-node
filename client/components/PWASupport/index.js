@@ -1,6 +1,6 @@
 import React from 'react';
 
-class OfflineSupport extends React.PureComponent {
+class PWASupport extends React.PureComponent {
   componentDidMount() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -15,4 +15,4 @@ class OfflineSupport extends React.PureComponent {
   }
 }
 
-export default OfflineSupport;
+export default PWASupport;

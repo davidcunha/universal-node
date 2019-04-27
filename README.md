@@ -130,7 +130,7 @@ This file is ignored in source control and it is intended to be created from `.e
 
 ## PWA Support
 
-By default, in production mode, the application is a [PWA](https://developers.google.com/web/progressive-web-apps/) with [Workbox](https://developers.google.com/web/tools/workbox/). Please change `static/manifest.json` with the respective application data. Workbox configuration can be found in `next.config.js`. The service worker is instantiated inside the `OfflineSupport` component.
+By default, in production mode, the application is a [PWA](https://developers.google.com/web/progressive-web-apps/) with [Workbox](https://developers.google.com/web/tools/workbox/). Please change `static/manifest.json` with the respective application data. Workbox configuration can be found in `next.config.js`. The service worker is instantiated inside the `PWASupport` component.
 
 ## Browserslist
 

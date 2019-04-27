@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Raven from 'raven-js';
 import { Grid } from '~/components/Grid';
 import CustomHead from './CustomHead';
-import OfflineSupport from './OfflineSupport';
+import PWASupport from './PWASupport';
 import Header from './Header';
 
 class Page extends PureComponent {
@@ -37,7 +37,7 @@ class Page extends PureComponent {
         <CustomHead meta={meta} />
         <Header isAuthenticated={isAuthenticated} />
         {children}
-        {process.env.NODE_ENV !== 'development' && <OfflineSupport />}
+        {process.env.NODE_ENV !== 'development' && <PWASupport />}
       </Grid>
     );
   }
