@@ -69,7 +69,6 @@
     "sequelize-cli": "^5.4.0",
     "styled-components": "^4.2.0",
     "styled-jsx": "^3.2.1",
-    "validator": "^10.11.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {
